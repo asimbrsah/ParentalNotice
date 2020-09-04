@@ -69,7 +69,7 @@ class NoticeFragment : DaggerFragment() {
 
     private fun observeNoticeResponse() {
         launcherViewModel.noticeResponse.observe(viewLifecycleOwner, Observer { noticeResponse ->
-            if (noticeResponse != null && noticeResponse.isNotEmpty() && launcherViewModel.detailPageId.value == 0) {
+            if (noticeResponse != null && noticeResponse.isNotEmpty()) {
                 val noticeAdapter = NoticeAdapter(object : NoticeAdapter.NoticeAdapterCallback {
                     override fun onNoticeClicked(
                         position: Int,
