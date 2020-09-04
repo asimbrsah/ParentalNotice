@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/navigation_notice">
+
+    <fragment
+        android:id="@id/navigation_notice"
+        android:name="com.example.parentalnotice.presentation.launcher.notice.NoticeFragment"
+        tools:layout="@layout/fragment_notice">
+
+        <action
+            android:id="@+id/to_notice_detail"
+            app:destination="@id/navigation_notice_detail"
+            app:popUpTo="@id/navigation_notice" />
+
+    </fragment>
+
+    <fragment
+        android:id="@id/navigation_notice_detail"
+        android:name="com.example.parentalnotice.presentation.launcher.notice.NoticeDetailFragment"
+        tools:layout="@layout/fragment_notice_detail">
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+    </fragment>
+</navigation>

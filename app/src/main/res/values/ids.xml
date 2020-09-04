@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="navigation_notice" type="id" />
+    <item name="navigation_notice_detail" type="id" />
+
+</resources>
