@@ -3,6 +3,7 @@ package com.example.parentalnotice.domain
 import com.example.parentalnotice.data.model.response.NoticeResponseModel
 import com.example.parentalnotice.data.repository.NoticeRepositoryImpl
 import com.example.parentalnotice.di.IODispatcher
+import com.example.parentalnotice.domain.wrapper.UseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 

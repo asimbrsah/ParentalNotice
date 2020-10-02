@@ -1,4 +1,4 @@
-package com.example.parentalnotice.presentation.launcher.notice
+package com.example.parentalnotice.presentation.notice
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.parentalnotice.data.model.response.NoticeResponseModel
 import com.example.parentalnotice.databinding.FragmentNoticeBinding
-import com.example.parentalnotice.presentation.factory.provideActivityViewModelProviderIntoFragment
-import com.example.parentalnotice.presentation.launcher.LauncherViewModel
-import com.example.parentalnotice.presentation.launcher.notice.NoticeFragmentDirections.toNoticeDetail
+import com.example.parentalnotice.presentation.wrapper.provideActivityViewModelProviderIntoFragment
+import com.example.parentalnotice.presentation.notice.NoticeFragmentDirections.toNoticeDetail
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -23,14 +22,14 @@ class NoticeFragment : DaggerFragment() {
 
     private lateinit var fragmentNoticeBinding: FragmentNoticeBinding
 
-    private lateinit var launcherViewModel: LauncherViewModel
+    private lateinit var noticeViewModel: NoticeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        launcherViewModel = provideActivityViewModelProviderIntoFragment(viewModelProvider)
+        noticeViewModel = provideActivityViewModelProviderIntoFragment(viewModelProvider)
 
         fragmentNoticeBinding = FragmentNoticeBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
@@ -48,7 +47,7 @@ class NoticeFragment : DaggerFragment() {
     }
 
     private fun observeLoading() {
-        launcherViewModel.loading.observe(viewLifecycleOwner, Observer { loading ->
+        noticeViewModel.loading.observe(viewLifecycleOwner, Observer { loading ->
             if (loading != null && loading) {
                 fragmentNoticeBinding.includeCircularProgress.circularProgressBar.visibility =
                     View.VISIBLE
@@ -60,7 +59,7 @@ class NoticeFragment : DaggerFragment() {
     }
 
     private fun observeRemoteError() {
-        launcherViewModel.remoteError.observe(viewLifecycleOwner, Observer { remoteError ->
+        noticeViewModel.remoteError.observe(viewLifecycleOwner, Observer { remoteError ->
             if (remoteError != null && remoteError.isNotEmpty()) {
                 Toast.makeText(requireContext(), remoteError, Toast.LENGTH_LONG).show()
             }
@@ -68,16 +67,19 @@ class NoticeFragment : DaggerFragment() {
     }
 
     private fun observeNoticeResponse() {
-        launcherViewModel.noticeResponse.observe(viewLifecycleOwner, Observer { noticeResponse ->
+        noticeViewModel.noticeResponse.observe(viewLifecycleOwner, Observer { noticeResponse ->
             if (noticeResponse != null && noticeResponse.isNotEmpty()) {
-                val noticeAdapter = NoticeAdapter(object : NoticeAdapter.NoticeAdapterCallback {
-                    override fun onNoticeClicked(
-                        position: Int,
-                        noticeResponseModel: NoticeResponseModel
-                    ) {
-                        findNavController().navigate(toNoticeDetail(noticeResponseModel.id))
-                    }
-                })
+                val noticeAdapter =
+                    NoticeAdapter(
+                        object :
+                            NoticeAdapter.NoticeAdapterCallback {
+                            override fun onNoticeClicked(
+                                position: Int,
+                                noticeResponseModel: NoticeResponseModel
+                            ) {
+                                findNavController().navigate(toNoticeDetail(noticeResponseModel.id))
+                            }
+                        })
                 noticeAdapter.submitList(noticeResponse)
                 fragmentNoticeBinding.rvNotice.adapter = noticeAdapter
                 fragmentNoticeBinding.rvNotice.visibility = View.VISIBLE

@@ -1,7 +1,7 @@
 package com.example.parentalnotice.di
 
-import com.example.parentalnotice.presentation.launcher.LauncherActivity
-import com.example.parentalnotice.presentation.launcher.LauncherModule
+import com.example.parentalnotice.presentation.notice.NoticeActivity
+import com.example.parentalnotice.presentation.notice.NoticeModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -11,8 +11,8 @@ abstract class ActivityBindingModule {
     @ActivityScope
     @ContributesAndroidInjector(
         modules = [
-            LauncherModule::class
+            NoticeModule::class
         ]
     )
-    abstract fun contributeLauncherActivity(): LauncherActivity
+    abstract fun contributeNoticeActivity(): NoticeActivity
 }

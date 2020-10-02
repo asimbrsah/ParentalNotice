@@ -1,4 +1,4 @@
-package com.example.parentalnotice.presentation.factory
+package com.example.parentalnotice.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

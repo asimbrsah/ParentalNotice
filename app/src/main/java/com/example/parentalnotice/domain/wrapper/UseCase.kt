@@ -1,4 +1,4 @@
-package com.example.parentalnotice.domain
+package com.example.parentalnotice.domain.wrapper
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -16,7 +16,6 @@ abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispat
         } catch (e: Exception) {
             Timber.d(e)
             Result.Error(e)
-
         }
     }
 

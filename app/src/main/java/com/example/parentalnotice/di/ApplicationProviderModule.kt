@@ -1,6 +1,5 @@
 package com.example.parentalnotice.di
 
-import android.app.Application
 import android.content.Context
 import com.example.parentalnotice.BaseApplication
 import com.example.parentalnotice.Constants

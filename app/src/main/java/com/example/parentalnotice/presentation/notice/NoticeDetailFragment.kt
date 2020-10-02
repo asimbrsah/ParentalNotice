@@ -1,4 +1,4 @@
-package com.example.parentalnotice.presentation.launcher.notice
+package com.example.parentalnotice.presentation.notice
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.parentalnotice.databinding.FragmentNoticeDetailBinding
-import com.example.parentalnotice.presentation.factory.provideActivityViewModelProviderIntoFragment
-import com.example.parentalnotice.presentation.launcher.LauncherViewModel
+import com.example.parentalnotice.presentation.wrapper.provideActivityViewModelProviderIntoFragment
 import dagger.android.support.DaggerFragment
 import timber.log.Timber
 import javax.inject.Inject
@@ -22,7 +21,7 @@ class NoticeDetailFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelProvider: ViewModelProvider.Factory
 
-    private lateinit var launcherViewModel: LauncherViewModel
+    private lateinit var noticeViewModel: NoticeViewModel
 
     private lateinit var fragmentNoticeDetailBinding: FragmentNoticeDetailBinding
 
@@ -31,12 +30,12 @@ class NoticeDetailFragment : DaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        launcherViewModel = provideActivityViewModelProviderIntoFragment(viewModelProvider)
+        noticeViewModel = provideActivityViewModelProviderIntoFragment(viewModelProvider)
 
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    launcherViewModel.saveWhenDetailPageViewedAndQuitTheApp(0)
+                    noticeViewModel.saveWhenDetailPageViewedAndQuitTheApp(0)
                     findNavController().navigateUp()
                 }
             }
@@ -63,7 +62,7 @@ class NoticeDetailFragment : DaggerFragment() {
             noticeId = NoticeDetailFragmentArgs.fromBundle(this).id
         }
 
-        launcherViewModel.saveWhenDetailPageViewedAndQuitTheApp(noticeId)
+        noticeViewModel.saveWhenDetailPageViewedAndQuitTheApp(noticeId)
 
         observeLoading()
         observeRemoteError()
@@ -71,7 +70,7 @@ class NoticeDetailFragment : DaggerFragment() {
     }
 
     private fun observeLoading() {
-        launcherViewModel.loading.observe(viewLifecycleOwner, Observer { loading ->
+        noticeViewModel.loading.observe(viewLifecycleOwner, Observer { loading ->
             if (loading != null && loading) {
                 fragmentNoticeDetailBinding.includeCircularProgress.circularProgressBar.visibility =
                     View.VISIBLE
@@ -83,7 +82,7 @@ class NoticeDetailFragment : DaggerFragment() {
     }
 
     private fun observeRemoteError() {
-        launcherViewModel.remoteError.observe(viewLifecycleOwner, Observer { remoteError ->
+        noticeViewModel.remoteError.observe(viewLifecycleOwner, Observer { remoteError ->
             if (remoteError != null && remoteError.isNotEmpty()) {
                 Toast.makeText(requireContext(), remoteError, Toast.LENGTH_LONG).show()
             }
@@ -91,7 +90,7 @@ class NoticeDetailFragment : DaggerFragment() {
     }
 
     private fun observeNoticeResponse() {
-        launcherViewModel.noticeResponse.observe(viewLifecycleOwner, Observer { noticeResponse ->
+        noticeViewModel.noticeResponse.observe(viewLifecycleOwner, Observer { noticeResponse ->
             if (noticeResponse != null && noticeResponse.isNotEmpty()) {
                 if (noticeId != 0) {
                     Timber.d("Passed notice id  :-  %s", noticeId)

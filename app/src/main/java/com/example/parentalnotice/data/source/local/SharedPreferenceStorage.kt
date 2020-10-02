@@ -9,6 +9,13 @@ import javax.inject.Singleton
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
+interface SharedPreferenceImpl {
+
+    var detailPageId: Int
+
+    fun clearAllPreference()
+}
+
 @Singleton
 class SharedPreferenceStorage(private val context: Context) : SharedPreferenceImpl {
 
@@ -26,13 +33,6 @@ class SharedPreferenceStorage(private val context: Context) : SharedPreferenceIm
     override fun clearAllPreference() {
         prefs.value.edit().clear().apply()
     }
-}
-
-interface SharedPreferenceImpl {
-
-    var detailPageId: Int
-
-    fun clearAllPreference()
 }
 
 class BooleanPreference(

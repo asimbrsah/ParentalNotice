@@ -1,4 +1,4 @@
-package com.example.parentalnotice.presentation.launcher.notice
+package com.example.parentalnotice.presentation.notice
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import com.example.parentalnotice.data.model.response.NoticeResponseModel
 import com.example.parentalnotice.databinding.ItemNoticeBinding
 
 class NoticeAdapter(private val noticeAdapterCallback: NoticeAdapterCallback) :
-    ListAdapter<NoticeResponseModel, NoticeAdapter.NoticeViewHolder>(NoticeAdapterDiffUtil) {
+    ListAdapter<NoticeResponseModel, NoticeAdapter.NoticeViewHolder>(
+        NoticeAdapterDiffUtil
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticeViewHolder {
         return NoticeViewHolder(

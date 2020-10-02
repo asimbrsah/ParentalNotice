@@ -1,21 +1,19 @@
-package com.example.parentalnotice.presentation.launcher
+package com.example.parentalnotice.presentation.notice
 
 import androidx.lifecycle.ViewModel
 import com.example.parentalnotice.di.ViewModelKey
-import com.example.parentalnotice.presentation.launcher.notice.NoticeDetailFragment
-import com.example.parentalnotice.presentation.launcher.notice.NoticeFragment
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class LauncherModule {
+abstract class NoticeModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(LauncherViewModel::class)
-    internal abstract fun bindLauncherViewModel(launcherViewModel: LauncherViewModel): ViewModel
+    @ViewModelKey(NoticeViewModel::class)
+    internal abstract fun bindNoticeViewModel(noticeViewModel: NoticeViewModel): ViewModel
 
     @ContributesAndroidInjector
     abstract fun contributeNoticeFragment(): NoticeFragment

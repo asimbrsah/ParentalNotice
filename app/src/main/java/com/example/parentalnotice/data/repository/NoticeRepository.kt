@@ -2,9 +2,13 @@ package com.example.parentalnotice.data.repository
 
 import com.example.parentalnotice.data.model.response.NoticeResponse
 import com.example.parentalnotice.data.model.response.NoticeResponseModel
-import com.example.parentalnotice.data.source.remote.RestApiEndPoint
+import com.example.parentalnotice.data.source.NoticeDataSourceImpl
 import javax.inject.Inject
 import javax.inject.Singleton
+
+interface NoticeRepositoryImpl {
+    suspend fun getNotice(): List<NoticeResponseModel>
+}
 
 @Singleton
 class NoticeRepository @Inject constructor(
@@ -30,22 +34,4 @@ class NoticeRepository @Inject constructor(
         }
         return noticeResponseList
     }
-}
-
-interface NoticeRepositoryImpl {
-    suspend fun getNotice(): List<NoticeResponseModel>
-}
-
-@Singleton
-class NoticeDataSource @Inject constructor(
-    private val restApiEndPoint: RestApiEndPoint
-) : NoticeDataSourceImpl {
-
-    override suspend fun getNotice(): List<NoticeResponse?>? {
-        return restApiEndPoint.getNotice()
-    }
-}
-
-interface NoticeDataSourceImpl {
-    suspend fun getNotice(): List<NoticeResponse?>?
 }

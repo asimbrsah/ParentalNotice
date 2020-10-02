@@ -1,4 +1,4 @@
-package com.example.parentalnotice.presentation.launcher
+package com.example.parentalnotice.presentation.notice
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,13 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.parentalnotice.data.model.response.NoticeResponseModel
 import com.example.parentalnotice.domain.GetDetailPageIdUseCase
 import com.example.parentalnotice.domain.GetNoticeUseCase
-import com.example.parentalnotice.domain.Result
+import com.example.parentalnotice.domain.wrapper.Result
 import com.example.parentalnotice.domain.SaveDetailPageIdUseCase
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class LauncherViewModel @Inject constructor(
+class NoticeViewModel @Inject constructor(
     private val getDetailPageIdUseCase: GetDetailPageIdUseCase,
     private val saveDetailPageIdUseCase: SaveDetailPageIdUseCase,
     private val getNoticeUseCase: GetNoticeUseCase

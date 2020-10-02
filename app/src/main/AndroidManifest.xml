@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.launcher.LauncherActivity">
+        <activity android:name=".presentation.notice.NoticeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

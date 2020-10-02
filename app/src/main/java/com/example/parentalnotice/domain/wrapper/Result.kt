@@ -1,4 +1,4 @@
-package com.example.parentalnotice.domain
+package com.example.parentalnotice.domain.wrapper
 
 sealed class Result<out R> {
     data class Success<out T>(val data: T) : Result<T>()

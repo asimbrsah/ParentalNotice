@@ -1,9 +1,9 @@
 package com.example.parentalnotice.di
 
-import com.example.parentalnotice.data.repository.NoticeDataSource
-import com.example.parentalnotice.data.repository.NoticeDataSourceImpl
 import com.example.parentalnotice.data.repository.NoticeRepository
 import com.example.parentalnotice.data.repository.NoticeRepositoryImpl
+import com.example.parentalnotice.data.source.NoticeDataSource
+import com.example.parentalnotice.data.source.NoticeDataSourceImpl
 import com.example.parentalnotice.data.source.remote.RestApiEndPoint
 import dagger.Module
 import dagger.Provides

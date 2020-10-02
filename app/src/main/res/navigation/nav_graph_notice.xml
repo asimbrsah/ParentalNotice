@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@id/navigation_notice"
-        android:name="com.example.parentalnotice.presentation.launcher.notice.NoticeFragment"
+        android:name="com.example.parentalnotice.presentation.notice.NoticeFragment"
         tools:layout="@layout/fragment_notice">
 
         <action
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@id/navigation_notice_detail"
-        android:name="com.example.parentalnotice.presentation.launcher.notice.NoticeDetailFragment"
+        android:name="com.example.parentalnotice.presentation.notice.NoticeDetailFragment"
         tools:layout="@layout/fragment_notice_detail">
 
         <argument

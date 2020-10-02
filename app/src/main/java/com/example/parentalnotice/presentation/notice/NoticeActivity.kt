@@ -1,4 +1,4 @@
-package com.example.parentalnotice.presentation.launcher
+package com.example.parentalnotice.presentation.notice
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -7,26 +7,26 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.parentalnotice.R
-import com.example.parentalnotice.databinding.ActivityLauncherBinding
-import com.example.parentalnotice.presentation.factory.provideActivityViewModelProvider
-import com.example.parentalnotice.presentation.launcher.notice.NoticeFragmentDirections.toNoticeDetail
+import com.example.parentalnotice.databinding.ActivityNoticeBinding
+import com.example.parentalnotice.presentation.notice.NoticeFragmentDirections.toNoticeDetail
+import com.example.parentalnotice.presentation.wrapper.provideActivityViewModelProvider
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class LauncherActivity : DaggerAppCompatActivity() {
+class NoticeActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelProvider: ViewModelProvider.Factory
 
-    lateinit var activityLauncherBinding: ActivityLauncherBinding
+    lateinit var activityNoticeBinding: ActivityNoticeBinding
     private lateinit var navController: NavController
 
-    lateinit var launcherViewModel: LauncherViewModel
+    lateinit var noticeViewModel: NoticeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityLauncherBinding = DataBindingUtil.setContentView(this, R.layout.activity_launcher)
-        launcherViewModel = provideActivityViewModelProvider(viewModelProvider)
+        activityNoticeBinding = DataBindingUtil.setContentView(this, R.layout.activity_notice)
+        noticeViewModel = provideActivityViewModelProvider(viewModelProvider)
 
         navController = findNavController(R.id.fragment_nav_host)
 
@@ -34,7 +34,7 @@ class LauncherActivity : DaggerAppCompatActivity() {
     }
 
     private fun observeOnDetailPageViewed() {
-        launcherViewModel.detailPageId.observe(this, Observer { detailPageId ->
+        noticeViewModel.detailPageId.observe(this, Observer { detailPageId ->
             if (detailPageId != null && detailPageId != 0) {
                 navController.navigate(toNoticeDetail(detailPageId))
             }

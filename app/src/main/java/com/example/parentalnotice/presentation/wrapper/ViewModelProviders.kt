@@ -1,4 +1,4 @@
-package com.example.parentalnotice.presentation.factory
+package com.example.parentalnotice.presentation.wrapper
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
